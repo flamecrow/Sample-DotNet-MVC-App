@@ -14,3 +14,6 @@ Edit/Create with basic validation (required fields, length restrictions)
 No Authentication implemented
 No inheritance between objects
 ```
+
+### Link to sample
+http://samplemvc.timsaelee.com/
