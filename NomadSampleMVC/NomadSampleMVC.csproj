@@ -133,6 +133,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarMakesController.cs" />
+    <Compile Include="Controllers\CarModelsController.cs" />
+    <Compile Include="Controllers\CarTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CarContext.cs" />
     <Compile Include="DAL\CarInitializer.cs" />
@@ -180,6 +183,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\CarTypes\Create.cshtml" />
+    <Content Include="Views\CarTypes\Delete.cshtml" />
+    <Content Include="Views\CarTypes\Details.cshtml" />
+    <Content Include="Views\CarTypes\Edit.cshtml" />
+    <Content Include="Views\CarTypes\Index.cshtml" />
+    <Content Include="Views\CarMakes\Create.cshtml" />
+    <Content Include="Views\CarMakes\Delete.cshtml" />
+    <Content Include="Views\CarMakes\Details.cshtml" />
+    <Content Include="Views\CarMakes\Edit.cshtml" />
+    <Content Include="Views\CarMakes\Index.cshtml" />
+    <Content Include="Views\CarModels\Create.cshtml" />
+    <Content Include="Views\CarModels\Delete.cshtml" />
+    <Content Include="Views\CarModels\Details.cshtml" />
+    <Content Include="Views\CarModels\Edit.cshtml" />
+    <Content Include="Views\CarModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

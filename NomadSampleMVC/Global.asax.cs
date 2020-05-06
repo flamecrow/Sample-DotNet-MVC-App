@@ -18,7 +18,7 @@ namespace NomadSampleMVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer(new CreateDatabaseIfNotExists<CarContext>());
+            //Database.SetInitializer<CarContext>(new CarInitializer<CarContext>());
         }
     }
 }

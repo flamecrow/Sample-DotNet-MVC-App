@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 namespace NomadSampleMVC.DAL
 {
-    public class CarInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<CarContext>
+    public class CarInitializer<T> : System.Data.Entity.DropCreateDatabaseAlways<CarContext>
     {
         protected override void Seed(CarContext context)
         {
@@ -36,18 +36,18 @@ namespace NomadSampleMVC.DAL
 
             var carModel = new List<CarModel>
             {
-            new CarModel{CarMakeID=1,Name="Prius"},
-            new CarModel{CarMakeID=1,Name="Camry"},
-            new CarModel{CarMakeID=1,Name="Corolla"},
-            new CarModel{CarMakeID=2,Name="X3"},
-            new CarModel{CarMakeID=2,Name="M5"},
-            new CarModel{CarMakeID=2,Name="M3"},
-            new CarModel{CarMakeID=3,Name="C300"},
-            new CarModel{CarMakeID=4,Name="Civic",},
-            new CarModel{CarMakeID=4,Name="Fit"},
-            new CarModel{CarMakeID=5,Name="Cerato"},
-            new CarModel{CarMakeID=6,Name="Elantra"},
-            new CarModel{CarMakeID=7,Name=""},
+            new CarModel{CarMakeID=1,CarTypeID=1,Name="Prius"},
+            new CarModel{CarMakeID=1,CarTypeID=2,Name="Camry"},
+            new CarModel{CarMakeID=1,CarTypeID=2,Name="Corolla"},
+            new CarModel{CarMakeID=2,CarTypeID=6,Name="X3"},
+            new CarModel{CarMakeID=2,CarTypeID=7,Name="M5"},
+            new CarModel{CarMakeID=2,CarTypeID=7,Name="M3"},
+            new CarModel{CarMakeID=3,CarTypeID=5,Name="C300"},
+            new CarModel{CarMakeID=4,CarTypeID=3,Name="Civic",},
+            new CarModel{CarMakeID=4,CarTypeID=1,Name="Fit"},
+            new CarModel{CarMakeID=5,CarTypeID=1,Name="Cerato"},
+            new CarModel{CarMakeID=6,CarTypeID=1,Name="Elantra"},
+            new CarModel{CarMakeID=7,CarTypeID=3,Name="TSX"},
             };
             carModel.ForEach(s => context.CarModels.Add(s));
             context.SaveChanges();

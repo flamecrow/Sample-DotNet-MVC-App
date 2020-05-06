@@ -9,7 +9,5 @@ namespace NomadSampleMVC.Models
     {
         public int CarMakeID { get; set; }
         public string Name { get; set; }
-
-        public virtual ICollection<CarModel> CarModels { get; set; }
     }
 }
