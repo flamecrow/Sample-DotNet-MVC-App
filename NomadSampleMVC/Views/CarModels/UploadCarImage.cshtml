@@ -1,0 +1,18 @@
+﻿@model NomadSampleMVC.Models.CarImage
+
+@if (@Model != null)
+{
+<div class="form-group">
+    @Html.Label("Image", new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @if (ViewBag.CarImageBytes != null)
+        {
+            <p>
+                <img src="data:@ViewBag.CarImageType;base64,@(Convert.ToBase64String(@ViewBag.CarImageBytes))" style="max-width: 250px"><br />
+                @ViewBag.CarImage
+            </p>
+        }
+        <input type="file" id="Image" name="upload" />
+    </div>
+</div>
+}

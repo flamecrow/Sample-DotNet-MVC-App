@@ -1,31 +1,82 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model PagedList.IPagedList<NomadSampleMVC.Models.CarModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Nomad Sample MVC App";
 }
+<h2>@ViewBag.Title.</h2>
+<h3>Cars example</h3>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
+<p>
+    Types: Economy, Compact, etc<br />
+    Makes: Toyota, Honda, etc. Inherits from Types.<br />
+    Models: Camry, Civic, etc (including color). Inherits from Makes.
+</p>
+<hr />
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="col-md-6">
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <strong>@Html.ActionLink("Add a Car", "Create", "CarModels")</strong>
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-6 text-right">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <p>
+                Search by: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" />
+            </p>
+        }
     </div>
 </div>
+<h4>List of all cars (6 per page)</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Make", "Index", new { sortOrder = ViewBag.MakeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TypeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Model", "Index", new { sortOrder = ViewBag.ModelSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.ColorSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarMake.Make)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @{Html.RenderAction("CarImage", "Home", new { id = item.CarModelID });}
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "CarModels", new { id = item.CarModelID }, null) |
+                @Html.ActionLink("Delete", "Delete", "CarModels", new { id = item.CarModelID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -142,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarImage.cs" />
     <Compile Include="Models\CarType.cs" />
     <Compile Include="Models\CarMake.cs" />
     <Compile Include="Models\CarModel.cs" />
@@ -152,12 +159,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -180,24 +189,24 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CarTypes\Create.cshtml" />
-    <Content Include="Views\CarTypes\Delete.cshtml" />
-    <Content Include="Views\CarTypes\Details.cshtml" />
-    <Content Include="Views\CarTypes\Edit.cshtml" />
-    <Content Include="Views\CarTypes\Index.cshtml" />
     <Content Include="Views\CarMakes\Create.cshtml" />
     <Content Include="Views\CarMakes\Delete.cshtml" />
     <Content Include="Views\CarMakes\Details.cshtml" />
     <Content Include="Views\CarMakes\Edit.cshtml" />
     <Content Include="Views\CarMakes\Index.cshtml" />
+    <Content Include="Views\CarTypes\Create.cshtml" />
+    <Content Include="Views\CarTypes\Delete.cshtml" />
+    <Content Include="Views\CarTypes\Details.cshtml" />
+    <Content Include="Views\CarTypes\Edit.cshtml" />
+    <Content Include="Views\CarTypes\Index.cshtml" />
+    <Content Include="Views\Home\CarImage.cshtml" />
     <Content Include="Views\CarModels\Create.cshtml" />
     <Content Include="Views\CarModels\Delete.cshtml" />
     <Content Include="Views\CarModels\Details.cshtml" />
     <Content Include="Views\CarModels\Edit.cshtml" />
     <Content Include="Views\CarModels\Index.cshtml" />
+    <Content Include="Views\CarModels\UploadCarImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

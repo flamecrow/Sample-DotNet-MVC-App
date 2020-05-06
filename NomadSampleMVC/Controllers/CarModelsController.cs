@@ -40,7 +40,7 @@ namespace NomadSampleMVC.Controllers
         // GET: CarModels/Create
         public ActionResult Create()
         {
-            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Name");
+            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Make");
             ViewBag.CarTypeID = new SelectList(db.CarTypes, "ID", "Type");
             return View();
         }
@@ -50,16 +50,52 @@ namespace NomadSampleMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarModelID,CarMakeID,CarTypeID,Name,Color")] CarModel carModel)
+        public ActionResult Create([Bind(Include = "CarModelID,CarMakeID,CarTypeID,Model,Color")] CarModel carModel,
+             HttpPostedFileBase upload)
         {
+            if (upload == null)
+            {
+                ModelState.AddModelError("FileURL", "Please upload an image.");
+            }
+
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+
+                    //carImage.CarModel = carModel;
+                    var entry = db.CarImages.FirstOrDefault(e => e.CarModelID == carModel.CarModelID);
+                    if (entry != null)
+                    {
+                        entry.FileName = System.IO.Path.GetFileName(upload.FileName);
+                        entry.ContentType = upload.ContentType;
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            entry.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        db.Entry(entry).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        var carImage = new CarImage
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            carImage.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        carImage.CarModel = carModel;
+                        db.CarImages.Add(carImage);
+                    }
+                }
                 db.CarModels.Add(carModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Name", carModel.CarMakeID);
+            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Make", carModel.CarMakeID);
             ViewBag.CarTypeID = new SelectList(db.CarTypes, "ID", "Type", carModel.CarTypeID);
             return View(carModel);
         }
@@ -76,7 +112,14 @@ namespace NomadSampleMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Name", carModel.CarMakeID);
+            CarImage carImage = db.CarImages.FirstOrDefault(s => s.CarModelID == carModel.CarModelID);
+            if (carImage != null)
+            {
+                ViewBag.CarImage = carImage.FileName;
+                ViewBag.CarImageBytes = carImage.Content;
+                ViewBag.CarImageType = carImage.ContentType;
+            }
+            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Make", carModel.CarMakeID);
             ViewBag.CarTypeID = new SelectList(db.CarTypes, "ID", "Type", carModel.CarTypeID);
             return View(carModel);
         }
@@ -86,15 +129,52 @@ namespace NomadSampleMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarModelID,CarMakeID,CarTypeID,Name,Color")] CarModel carModel)
+        public ActionResult Edit([Bind(Include = "CarModelID,CarMakeID,CarTypeID,Model,Color")] CarModel carModel,
+             HttpPostedFileBase upload)
         {
+            if (upload == null)
+            {
+                ModelState.AddModelError("FileURL", "Please upload an image.");
+            }
+
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+
+                    //carImage.CarModel = carModel;
+                    var entry = db.CarImages.FirstOrDefault(e => e.CarModelID == carModel.CarModelID);
+                    if (entry != null)
+                    {
+                        entry.FileName = System.IO.Path.GetFileName(upload.FileName);
+                        entry.ContentType = upload.ContentType;
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            entry.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        db.Entry(entry).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        var carImage = new CarImage
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            carImage.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        carImage.CarModel = carModel;
+                        db.CarImages.Add(carImage);
+                    }
+                }
                 db.Entry(carModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Name", carModel.CarMakeID);
+            ViewBag.CarMakeID = new SelectList(db.CarMakes, "CarMakeID", "Make", carModel.CarMakeID);
             ViewBag.CarTypeID = new SelectList(db.CarTypes, "ID", "Type", carModel.CarTypeID);
             return View(carModel);
         }

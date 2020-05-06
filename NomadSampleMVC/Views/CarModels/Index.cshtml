@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CarMake.Name)
+            @Html.DisplayNameFor(model => model.CarMake.Make)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CarType.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Model)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Color)
@@ -29,20 +29,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CarMake.Name)
+            @Html.DisplayFor(modelItem => item.CarMake.Make)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarType.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Model)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Color)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CarModelID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CarModelID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.CarModelID })
         </td>
     </tr>

@@ -13,6 +13,7 @@ namespace NomadSampleMVC.DAL
         public DbSet<CarType> CarTypes { get; set; }
         public DbSet<CarMake> CarMakes { get; set; }
         public DbSet<CarModel> CarModels { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

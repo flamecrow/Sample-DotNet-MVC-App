@@ -23,31 +23,31 @@ namespace NomadSampleMVC.DAL
 
             var carMakes = new List<CarMake>
             {
-            new CarMake{Name="Toyota"},
-            new CarMake{Name="BMW"},
-            new CarMake{Name="Mercedes"},
-            new CarMake{Name="Honda"},
-            new CarMake{Name="Kia"},
-            new CarMake{Name="Hyundai"},
-            new CarMake{Name="Acura"}
+            new CarMake{Make="Toyota"},
+            new CarMake{Make="BMW"},
+            new CarMake{Make="Mercedes"},
+            new CarMake{Make="Honda"},
+            new CarMake{Make="Kia"},
+            new CarMake{Make="Hyundai"},
+            new CarMake{Make="Acura"}
             };
             carMakes.ForEach(s => context.CarMakes.Add(s));
             context.SaveChanges();
 
             var carModel = new List<CarModel>
             {
-            new CarModel{CarMakeID=1,CarTypeID=1,Name="Prius"},
-            new CarModel{CarMakeID=1,CarTypeID=2,Name="Camry"},
-            new CarModel{CarMakeID=1,CarTypeID=2,Name="Corolla"},
-            new CarModel{CarMakeID=2,CarTypeID=6,Name="X3"},
-            new CarModel{CarMakeID=2,CarTypeID=7,Name="M5"},
-            new CarModel{CarMakeID=2,CarTypeID=7,Name="M3"},
-            new CarModel{CarMakeID=3,CarTypeID=5,Name="C300"},
-            new CarModel{CarMakeID=4,CarTypeID=3,Name="Civic",},
-            new CarModel{CarMakeID=4,CarTypeID=1,Name="Fit"},
-            new CarModel{CarMakeID=5,CarTypeID=1,Name="Cerato"},
-            new CarModel{CarMakeID=6,CarTypeID=1,Name="Elantra"},
-            new CarModel{CarMakeID=7,CarTypeID=3,Name="TSX"},
+            new CarModel{CarMakeID=1,CarTypeID=1,Model="Prius",Color="White"},
+            new CarModel{CarMakeID=1,CarTypeID=2,Model="Camry",Color="Red"},
+            new CarModel{CarMakeID=1,CarTypeID=2,Model="Corolla",Color="Maroon"},
+            new CarModel{CarMakeID=2,CarTypeID=6,Model="X3",Color="Blue"},
+            new CarModel{CarMakeID=2,CarTypeID=7,Model="M5",Color="White"},
+            new CarModel{CarMakeID=2,CarTypeID=7,Model="M3",Color="Black"},
+            new CarModel{CarMakeID=3,CarTypeID=5,Model="C300",Color="Gray"},
+            new CarModel{CarMakeID=4,CarTypeID=3,Model="Civic",Color="Silver"},
+            new CarModel{CarMakeID=4,CarTypeID=1,Model="Fit",Color="Gray"},
+            new CarModel{CarMakeID=5,CarTypeID=1,Model="Cerato",Color="Red"},
+            new CarModel{CarMakeID=6,CarTypeID=1,Model="Elantra",Color="Silver"},
+            new CarModel{CarMakeID=7,CarTypeID=3,Model="TSX",Color="White"},
             };
             carModel.ForEach(s => context.CarModels.Add(s));
             context.SaveChanges();

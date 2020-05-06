@@ -1,0 +1,6 @@
+﻿@model NomadSampleMVC.Models.CarImage
+
+@if (@Model != null)
+{
+    <img src="data:@Model.ContentType;base64,@(Convert.ToBase64String(Model.Content))" style="max-height: 50px">
+}

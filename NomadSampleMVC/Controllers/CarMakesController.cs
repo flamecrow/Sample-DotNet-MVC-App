@@ -47,7 +47,7 @@ namespace NomadSampleMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarMakeID,Name")] CarMake carMake)
+        public ActionResult Create([Bind(Include = "CarMakeID,Make")] CarMake carMake)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace NomadSampleMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarMakeID,Name")] CarMake carMake)
+        public ActionResult Edit([Bind(Include = "CarMakeID,Make")] CarMake carMake)
         {
             if (ModelState.IsValid)
             {
